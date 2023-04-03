@@ -3,12 +3,12 @@ MAINTAINER "Michael Shick" "mike@shick.xyz"
 
 ENV APP_ENV=production
 
+RUN mkdir /heapchart
 WORKDIR /heapchart
 
-COPY Gemfile Gemfile.lock .
+COPY Gemfile Gemfile.lock /heapchart/
 RUN bundler install
 
-COPY main.rb .
-
+COPY . /heapchart/
 
 ENTRYPOINT ["ruby", "main.rb"]

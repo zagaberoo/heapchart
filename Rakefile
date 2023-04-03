@@ -1,6 +1,6 @@
 require 'securerandom'
 
-task default: :local
+task default: :build_image
 
 IMAGE_NAME = 'heapchart'
 DOCKER = 'sudo -g docker docker'
@@ -24,7 +24,7 @@ end
 
 desc "run the HeapChart server as a Docker container"
 task contained: [:build_image, SESSION_SECRET] do
-  sh "#{DOCKER} run #{IMAGE_NAME}"
+  sh "#{DOCKER} run -p 80:22000 --volume ${PWD}/data:/heapchart/data #{IMAGE_NAME}"
 end
 
 

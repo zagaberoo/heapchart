@@ -65,7 +65,7 @@ post Path::SIGNUP do
     halt 500, "username is required"
   end
 
-  minimum = Data::Session::USERNAME_MIN
+  minimum = AppData::Session::USERNAME_MIN
   if username.length < minimum
     halt 500, "username must have at least #{minimum} characters"
   end
@@ -86,7 +86,7 @@ post Path::SIGNUP do
     halt 500, "password is required"
   end
 
-  minimum = Data::Session::PASSWORD_MIN
+  minimum = AppData::Session::PASSWORD_MIN
   if password.length < minimum
     halt 500, "password must have at least #{minimum} characters"
   end

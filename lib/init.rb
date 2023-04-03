@@ -6,7 +6,7 @@ require_relative 'data'
 
 APPNAME = 'HeapChart'
 
-config = Data::Config.load
+config = AppData::Config.load
 
 DATA_STORE = case config['database']
              in 'sqlite'
@@ -18,31 +18,31 @@ DATA_STORE = case config['database']
                Sequel.postgres(options["database"], **options)
              end
 
-Data.table_init DATA_STORE
+AppData.table_init DATA_STORE
 
 # Due to Sequel's magic, model classes can't be defined until after the DB is
 # connected.  The real definitions are still logically grouped with the schema
 # definitions in the data library.
 
 class User < Sequel::Model
-  class_exec &Data::Model::USER
+  class_exec &AppData::Model::USER
 end
 
 class Library < Sequel::Model
-  class_exec &Data::Model::LIBRARY
+  class_exec &AppData::Model::LIBRARY
 end
 
 class Floor < Sequel::Model
-  class_exec &Data::Model::FLOOR
+  class_exec &AppData::Model::FLOOR
 end
 
-NaturallyCompare = Data::NaturallyCompare
-Session = Data::Session
+NaturallyCompare = AppData::NaturallyCompare
+Session = AppData::Session
 
 configure do
   enable :sessions
   set :sessions, key: Session::COOKIE
-  set :sessions, secure: settings.production?
+  #set :sessions, secure: settings.production?
   set :session_secret, File.read('data/session_secret').strip
   set :bind, '0.0.0.0'
   set :port, 22000
@@ -52,7 +52,7 @@ end
 before do
   # Never allow insecure communication in production.
   if settings.production? && !request.secure?
-    redirect request.url.sub(/^http/i, 'https'), 301
+    #redirect request.url.sub(/^http/i, 'https'), 301
   end
 
   @user = Session.user?(session, User)

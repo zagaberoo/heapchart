@@ -1,11 +1,12 @@
-# Schemas and algorithms related to the handling of business data.
+# Schemas and algorithms related to the handling of application data.
 #
 # - database and model schemas
 # - natural sort data comparators
 # - user session data configuration
 # - configuration from TOML file
 
-module Data
+
+module AppData
   # These lambdas can be given to Sequel to treat as database schema
   # definitions.
   TABLE_SPEC = {
