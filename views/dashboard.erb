@@ -1,0 +1,9 @@
+<% if @user %>
+<div>
+  beloved member since <%= @user.when_created.strftime '%B %e' %>
+</div>
+<% end %>
+<ul>
+  <li><a href="<%= Path::Library::LIST %>">View Libraries</a></li>
+  <li><a href="<%= Path::Floor::LIST %>">View Floors</a></li>
+</ul>

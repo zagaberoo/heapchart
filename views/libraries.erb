@@ -1,0 +1,26 @@
+<div>
+  <h1>
+<% if @libraries.empty? %>
+    Currently, there are no libraries.
+<% else %>
+    Libraries:
+<% end %>
+  </h1>
+<% unless @libraries.empty? %>
+  <table>
+  <% @libraries.each do |library| %>
+    <tr>
+      <td><a href="<%= Path::Library::DELETE[library.id] %>"><b>[delete]</b></a></td>
+      <td><a href="<%= Path::Library::EDIT[library.id] %>"><b>[edit]</b></a></td>
+      <td><a href="<%= Path::Library::VIEW[library.id] %>"><%= library %></a></td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
+</div>
+<p>
+  <form action="<%= Path::Library::CREATE %>" method="post">
+    <input name="name"/>
+    <button>add library</button>
+  </form>
+</p>

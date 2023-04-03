@@ -1,0 +1,23 @@
+<h1>
+<% if @library %>
+  Edit Library: <%= @library %>
+<% else %>
+  Add Library
+<% end %>
+</h1>
+<% if @library %>
+<p>
+ <a href="<%= Path::Library::DELETE[@library.id] %>"><b>[delete library]</b></a>
+</p>
+<% end %>
+<div>
+<% if @library %>
+  <form action="<%= Path::Library::EDIT[@library.id] %>" method="post">
+<% else %>
+  <form action="<%= Path::Library::CREATE %>" method="post">
+<% end %>
+    <label><b>name</b>:
+      <input name="name" value="<%= @library&.name || "" %>"/></label>
+    <button><%= if @library; "Edit"; else; "Add"; end %></button>
+  </form>
+</div>

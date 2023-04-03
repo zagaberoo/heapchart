@@ -1,0 +1,31 @@
+<h1>
+<% if @floor %>
+  Edit Floor: <%= @floor %>
+<% else %>
+  Add Floor
+<% end %>
+</h1>
+<% if @floor %>
+<p>
+  <a href="<%= Path::Floor::ASSIGN[@floor.id] %>">[reassign library]</a>
+  <a href="<%= Path::Floor::DELETE[@floor.id] %>">[delete floor]</a>
+</p>
+<% end %>
+<div>
+<% if @floor %>
+  <form action="<%= Path::Floor::EDIT[@floor.id] %>" method="post">
+<% else %>
+  <form action="<%= Path::Floor::CREATE %>" method="post">
+<% end %>
+    <label><b>name</b>:
+      <input name="name" value="<%= @floor&.name || "" %>"/></label>
+    <br/>
+    <label><b>directions</b>:
+      <input name="directions" value="<%= @floor&.directions || "" %>"/></label>
+    <br/>
+    <label><b>order</b>:
+      <input name="order" value="<%= @floor&.order || "" %>"/></label>
+    <br/>
+    <button><%= if @floor; "Edit"; else; "Add"; end %></button>
+  </form>
+</div>

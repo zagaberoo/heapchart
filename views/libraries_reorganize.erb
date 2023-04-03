@@ -1,0 +1,12 @@
+<h1><%= @library %> - Reorganize Floors</h1>
+<form action="<%= Path::Library::REORGANIZE[@library.id] %>" method="post">
+  <table>
+<% @floors.each do |floor| %>
+    <tr>
+      <td><input name="floor-<%= floor.id %>" value="<%= floor.order %>"/></td>
+      <td><%= floor %></td>
+    </tr>
+<% end %>
+  </table>
+  <button>Submit</button>
+</form>

@@ -1,0 +1,8 @@
+<h1>Confirm Floor Deletion - <%= @floor %></h1>
+<p><i>There's no going back.</i></p>
+<div>
+  <form action="<%= Path::Floor::DELETE[@floor.id] %>" method="post">
+    <input type="hidden" name="confirmation" value="confirmed!"/>
+    <button>DESTROY</button>
+  </form>
+</div>

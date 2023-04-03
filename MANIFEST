@@ -1,0 +1,11 @@
+# Because Docker has no chill and will vacuum up all files in the build context
+# by default, *and* Docker won't let me symlink things selectively into a more
+# narrowly-defined build context, this file enumerates all files that are
+# visible to Docker.  If a file is to appear in the image, it must be listed
+# here.  See also Rakefile.
+Gemfile
+Gemfile.lock
+main.rb
+lib/**/*
+data/**/*
+views/**/*

@@ -1,0 +1,24 @@
+<h1>Floor - <%= @floor %></h1>
+
+<a href="<%= Path::Floor::EDIT[@floor.id] %>">[edit]</a>
+
+<h2>Library:</h2>
+<% if @floor.library %>
+<p>
+  <a href="<%= Path::Library::VIEW[@floor.library.id] %>">
+    <%= @floor.library %>
+  </a>
+</p>
+<% else %>
+<p>&lt;unassigned&gt;</p>
+<% end %>
+
+<p>
+  <a href="<%= Path::Floor::ASSIGN[@floor.id] %>">[reassign]</a>
+</p>
+
+<h2>Directions:</h2>
+<p><%= @floor.directions || "&lt;none&gt;"%></p>
+
+<h2>Order:</h2>
+<p><%= @floor.order || "&lt;unordered&gt;"%></p>

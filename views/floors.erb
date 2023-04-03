@@ -1,0 +1,34 @@
+<div>
+  <h1>
+<% if @floors.empty? %>
+    Currently, there are no floors.
+<% else %>
+    Floors:
+<% end %>
+  </h1>
+<% unless @floors.empty? %>
+  <table>
+    <tr><th/><th/><th>floor</th><th>library</th></tr>
+  <% @floors.each do |floor| %>
+    <tr>
+      <td><a href="<%= Path::Floor::DELETE[floor.id] %>"><b>[delete]</b></a></td>
+      <td><a href="<%= Path::Floor::EDIT[floor.id] %>"><b>[edit]</b></a></td>
+      <td><a href="<%= Path::Floor::VIEW[floor.id] %>"><%= floor %></a></td>
+      <td>
+    <% if floor.library %>
+      <a href="<%= Path::Library::VIEW[floor.library.id] %>"><%= floor.library %></a>
+    <% else %>
+      <a href="<%= Path::Floor::ASSIGN[floor.id] %>">&lt;unassigned&gt;</a>
+    <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
+</div>
+<p>
+<form action="<%= Path::Floor::CREATE %>" method="post">
+    <input name="name"/>
+    <button>add floor</button>
+  </form>
+</p>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><% if @title %><%= @title %> - <% end %><%= APPNAME %></title>
+  </head>
+  <body>
+<% if @user %>
+    <div>
+      <%= @user.name %>
+      <a href="<%= Path::Library::LIST %>">[libraries]</a>
+      <a href="<%= Path::Floor::LIST %>">[floors]</a>
+      <a href="<%= Path::DASHBOARD %>">[dashboard]</a>
+      <a href="<%= Path::LOGOUT %>">[logout]</a>
+    </div>
+<% end %>
+    <hr/>
+<%= yield %>
+  </body>
+</html>

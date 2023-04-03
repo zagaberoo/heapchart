@@ -1,0 +1,16 @@
+<h1>Library Assignment - <%= @floor %></h1>
+<p><i>currently:</i> <%= @floor.library || "&lt;unassigned&gt;" %></p>
+<form action="<%= Path::Floor::ASSIGN[@floor.id] %>" method="post">
+  <fieldset>
+    <legend>New Assignment</legend>
+<% @libraries.each do |library| %>
+    <% input_id = "library-#{library.id}" %>
+    <input name="library" type="radio"
+           id="<%= input_id %>" value="<%= library.id %>" />
+    <label for="<%= input_id %>"><%= library %></label>
+    <br/>
+<% end %>
+  </fieldset>
+  <button>Assign</button>
+</form>
+<p><a href="<%= Path::Floor::UNASSIGN[@floor.id] %>">[unassign]</a></p>

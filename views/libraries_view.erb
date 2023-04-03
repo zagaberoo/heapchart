@@ -1,0 +1,27 @@
+<h1><%= @library %> - Floorplan</h1>
+<p>
+<% unless @floors.empty? %>
+  <a href="<%= Path::Library::REORGANIZE[@library.id] %>">[reorganize floors]</a>
+<% end %>
+  <a href="<%= Path::Library::EDIT[@library.id] %>">[edit library]</a>
+</p>
+<% if @floors.empty? %>
+<p>
+  <%= @library %> has no floors!
+  Assign some from the <a href="<%= Path::Floor::LIST %>">floor manager</a>.
+</p>
+<% else %>
+<hr/>
+<table>
+  <tr><th/><th/><th>floor name</th><th>directions</th></tr>
+<% @floors.each do |floor| %>
+  <tr>
+    <td><a href="<%= Path::Floor::UNASSIGN[floor.id] %>"><b>[remove]</b></a></td>
+    <td><a href="<%= Path::Floor::EDIT[floor.id] %>"><b>[edit]</b></a></td>
+    <td><a href="<%= Path::Floor::VIEW[floor.id] %>"><%= floor %></a></td>
+    <td><i><%= floor.directions %></i></td>
+  </tr>
+<% end %>
+</table>
+<hr/>
+<% end %>

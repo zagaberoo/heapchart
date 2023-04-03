@@ -1,0 +1,11 @@
+<h1>Confirm Library Deletion - <%= @library %></h1>
+<p><i>There's no going back.</i></p>
+<div>
+  <form action="<%= Path::Library::DELETE[@library.id] %>" method="post">
+    <label><b>delete all assigned floors</b>
+      <input type="checkbox" name="cascade"/></label>
+    <br/>
+    <input type="hidden" name="confirmation" value="confirmed!"/>
+    <button>DESTROY</button>
+  </form>
+</div>

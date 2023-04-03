@@ -1,0 +1,13 @@
+database = "sqlite"
+
+[postgres]
+
+database = "heapchart"
+user = "heapchart"
+password = "data/postgres"
+host = "localhost"
+port = 5432
+
+[sqlite]
+
+path = "data/heapchart.db"
